@@ -49,20 +49,11 @@ name="nasm64"
 
 ```
 Name : version
-Type : variable (string)
-Chars: [0-9\.]+
+Type : method
+Args : (none)
 ```
 
-The version of the interpreter this PLD file provides
-
-Examples
-```bash
-# Python 3.9.1
-version="3.9.1"
-
-# NASM
-version="2.15.05"
-```
+Returns the current version of the specified application in a SemVer compilant format
 
 #### Aliases
 
@@ -120,7 +111,7 @@ The method is given a 10 second timeout, failing immediately if the timelimit is
 
 The working directory is a temp folder for the current execution, with code being available in the file `code.code`. The directory for `$PISTON_INSTALL/languages/$name` can be accessed through `$LBIN` (Language Binaries)
 
-### Run
+#### Run
 
 ```
 Name : run
@@ -132,3 +123,16 @@ This method should execute the code using the specified runner.
 It is given a 3 second timeout, failing if it times out.
 
 The working directory is a temp folder for the current execution, with code being available in the file `code.code`, args in `args.args` seperated by `\n` bytes, and stdin data is available in `stdin.stdin`. The directory for `$PISTON_INSTALL/languages/$name` can be accessed through `$LBIN` (Language Binaries)
+
+#### Path
+
+```
+Name : path
+Type : method
+Args : (none)
+```
+
+This method should return absolute paths to add to the $PATH variable.
+This is called before execution, and should simply contain a handful of `echo` statements.
+
+Like previous commands, the `$LBIN` variable is accessable.
