@@ -1,5 +1,5 @@
 name="go"
-aliases=()
+aliases=("go" "golang")
 requires=()
 
 version(){

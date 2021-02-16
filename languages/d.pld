@@ -1,5 +1,5 @@
 name="d"
-aliases=()
+aliases=("dlang" "d")
 requires=()
 
 version(){

@@ -1,5 +1,5 @@
 name="kotlin"
-aliases=()
+aliases=("kotlin" "kt")
 requires=()
 
 version(){

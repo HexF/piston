@@ -1,5 +1,5 @@
 name="lua"
-aliases=()
+aliases=("lua")
 requires=()
 
 version(){

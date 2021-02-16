@@ -1,5 +1,5 @@
 name="cpp"
-aliases=()
+aliases=("c++" "cpp" "cc" "cxx")
 requires=()
 
 version(){

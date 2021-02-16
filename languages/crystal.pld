@@ -1,5 +1,5 @@
 name="crystal"
-aliases=()
+aliases=("crystal" "cr")
 requires=()
 
 version(){

@@ -1,5 +1,5 @@
 name="php"
-aliases=()
+aliases=("php" "php3" "php4" "php5")
 requires=()
 
 version(){

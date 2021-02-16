@@ -1,5 +1,5 @@
 name="ruby"
-aliases=()
+aliases=("duby" "rb" "ruby")
 requires=()
 
 version(){

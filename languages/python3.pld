@@ -1,5 +1,5 @@
 name="python3"
-aliases=()
+aliases=("py" "py3" "python" "python3")
 requires=()
 
 version(){

@@ -1,5 +1,5 @@
 name="deno"
-aliases=()
+aliases=("deno" "denojs" "denots")
 requires=()
 
 version(){

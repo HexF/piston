@@ -1,5 +1,5 @@
 name="prolog"
-aliases=()
+aliases=("prolog" "plg")
 requires=()
 
 version(){

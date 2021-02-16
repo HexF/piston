@@ -1,5 +1,5 @@
 name="csharp"
-aliases=()
+aliases=("c#" "cs" "csharp")
 requires=()
 
 version(){

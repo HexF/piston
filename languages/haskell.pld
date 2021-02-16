@@ -1,5 +1,5 @@
 name="haskell"
-aliases=()
+aliases=("haskell" "hs")
 requires=()
 
 version(){

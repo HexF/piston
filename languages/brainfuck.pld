@@ -1,5 +1,5 @@
 name="brainfuck"
-aliases=()
+aliases=("bf" "brainfuck")
 requires=()
 
 version(){

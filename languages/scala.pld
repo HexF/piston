@@ -1,5 +1,5 @@
 name="scala"
-aliases=()
+aliases=("scala" "sc")
 requires=()
 
 version(){

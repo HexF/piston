@@ -1,5 +1,5 @@
 name="nasm64"
-aliases=()
+aliases=("asm64" "nasm64")
 requires=()
 
 version(){

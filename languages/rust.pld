@@ -1,5 +1,5 @@
 name="rust"
-aliases=()
+aliases=("rs" "rust")
 requires=()
 
 version(){

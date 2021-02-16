@@ -1,5 +1,5 @@
 name="bash"
-aliases=()
+aliases=("bash" "sh")
 requires=()
 
 version(){

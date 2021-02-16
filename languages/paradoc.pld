@@ -1,5 +1,5 @@
 name="paradoc"
-aliases=()
+aliases=("paradoc")
 requires=()
 
 version(){

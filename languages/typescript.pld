@@ -1,5 +1,5 @@
 name="typescript"
-aliases=()
+aliases=("ts" "typescript")
 requires=()
 
 version(){

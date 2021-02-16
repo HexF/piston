@@ -1,5 +1,5 @@
 name="nasm"
-aliases=()
+aliases=("asm" "nasm")
 requires=()
 
 version(){

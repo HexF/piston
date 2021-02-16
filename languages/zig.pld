@@ -1,5 +1,5 @@
 name="zig"
-aliases=()
+aliases=("zig")
 requires=()
 
 version(){

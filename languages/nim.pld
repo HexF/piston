@@ -1,5 +1,5 @@
 name="nim"
-aliases=()
+aliases=("nim")
 requires=()
 
 version(){
