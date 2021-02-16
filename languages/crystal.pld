@@ -1,0 +1,16 @@
+name="crystal"
+aliases=()
+requires=()
+
+version(){
+	crystal -v | grep -Po '\d+.\d+.\d+'
+}
+install(){}
+pre_uninstall(){}
+post_uninstall(){}
+path(){}
+compile(){}
+run(){
+	timeout -s KILL 10 crystal build code.code
+	timeout -s KILL 3 xargs -a args.args -d '\n' ./code < stdin.stdin
+}

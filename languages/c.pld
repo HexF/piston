@@ -1,0 +1,19 @@
+name="c"
+aliases=()
+requires=()
+
+version(){
+	gcc --version | grep -Po '\d+.\d+.\d+'
+}
+install(){}
+pre_uninstall(){}
+post_uninstall(){}
+path(){}
+compile(){}
+run(){
+	#!/usr/bin/bash
+	
+	
+	timeout -s KILL 10 gcc -std=c11 -o binary -x c code.code
+	timeout -s KILL 3 xargs -a args.args -d '\n' ./binary < stdin.stdin
+}

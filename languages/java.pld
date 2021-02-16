@@ -1,0 +1,16 @@
+name="java"
+aliases=()
+requires=()
+
+version(){
+	java -version | grep -Po '\d+.\d+.\d+'
+}
+install(){}
+pre_uninstall(){}
+post_uninstall(){}
+path(){}
+compile(){}
+run(){
+	cp code.code interim.java
+	timeout -s KILL 10 xargs -a args.args -d '\n' java interim.java < stdin.stdin
+}

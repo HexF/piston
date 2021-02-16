@@ -1,0 +1,17 @@
+name="nasm"
+aliases=()
+requires=()
+
+version(){
+	nasm -version | grep -Po '\d+.\d+.\d+'
+}
+install(){}
+pre_uninstall(){}
+post_uninstall(){}
+path(){}
+compile(){}
+run(){
+	nasm -f elf32 -o binary.o code.code
+	ld -m elf_i386 binary.o -o binary
+	timeout -s KILL 3 xargs -a args.args -d '\n' ./binary < stdin.stdin
+}

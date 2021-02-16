@@ -1,0 +1,17 @@
+name="go"
+aliases=()
+requires=()
+
+version(){
+	go version | grep -Po '\d+.\d+.\d+'
+}
+install(){}
+pre_uninstall(){}
+post_uninstall(){}
+path(){}
+compile(){}
+run(){
+	cp code.code interim.go
+	go build interim.go
+	timeout -s KILL 3 xargs -a args.args -d '\n' ./interim < stdin.stdin
+}

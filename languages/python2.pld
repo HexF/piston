@@ -1,0 +1,15 @@
+name="python2"
+aliases=()
+requires=()
+
+version(){
+	python -V | grep -Po '\d+.\d+.\d+'
+}
+install(){}
+pre_uninstall(){}
+post_uninstall(){}
+path(){}
+compile(){}
+run(){
+	timeout -s KILL 3 xargs -a args.args -d '\n' python code.code < stdin.stdin
+}

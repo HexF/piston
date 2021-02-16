@@ -1,0 +1,16 @@
+name="paradoc"
+aliases=()
+requires=()
+
+version(){
+	python3.8 -m paradoc --version | grep -Po '\d+.\d+.\d+'
+}
+install(){}
+pre_uninstall(){}
+post_uninstall(){}
+path(){}
+compile(){}
+run(){
+	export PYTHONPATH=$PYTHONPATH:/opt/paradoc
+	timeout -s KILL 3 python3.8 -m paradoc code.code < args.args
+}

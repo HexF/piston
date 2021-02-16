@@ -1,0 +1,16 @@
+name="cpp"
+aliases=()
+requires=()
+
+version(){
+	g++ --version | grep -Po '\d+.\d+.\d+'
+}
+install(){}
+pre_uninstall(){}
+post_uninstall(){}
+path(){}
+compile(){}
+run(){
+	timeout -s KILL 10 g++ -std=c++17 -o binary -x c++ code.code
+	timeout -s KILL 3 xargs -a args.args -d '\n' ./binary < stdin.stdin
+}

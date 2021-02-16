@@ -1,0 +1,17 @@
+name="d"
+aliases=()
+requires=()
+
+version(){
+	dmd --version | grep -Po '\d+.\d+.\d+'
+}
+install(){}
+pre_uninstall(){}
+post_uninstall(){}
+path(){}
+compile(){}
+run(){
+	cp code.code code.d
+	timeout -s KILL 10 dmd code.d
+	timeout -s KILL 3 xargs -a args.args -d '\n' ./code
+}

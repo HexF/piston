@@ -1,0 +1,17 @@
+name="zig"
+aliases=()
+requires=()
+
+version(){
+	zig version | grep -Po '\d+.\d+.\d+'
+}
+install(){}
+pre_uninstall(){}
+post_uninstall(){}
+path(){}
+compile(){}
+run(){
+	cp code.code main.zig
+	timeout -s KILL 10 zig build-exe main.zig && \
+	timeout -s KILL 3 xargs -a args.args -d '\n' ./main
+}

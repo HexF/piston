@@ -1,0 +1,16 @@
+name="rust"
+aliases=()
+requires=()
+
+version(){
+	rustc --version | grep -Po '\d+.\d+.\d+'
+}
+install(){}
+pre_uninstall(){}
+post_uninstall(){}
+path(){}
+compile(){}
+run(){
+	timeout -s KILL 10 rustc -o binary code.code
+	timeout -s KILL 3 xargs -a args.args -d '\n' ./binary < stdin.stdin
+}

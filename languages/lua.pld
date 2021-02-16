@@ -1,0 +1,15 @@
+name="lua"
+aliases=()
+requires=()
+
+version(){
+	lua -v | grep -Po '\d+.\d+.\d+'
+}
+install(){}
+pre_uninstall(){}
+post_uninstall(){}
+path(){}
+compile(){}
+run(){
+	timeout -s KILL 3 xargs -a args.args -d '\n' lua code.code < stdin.stdin
+}
