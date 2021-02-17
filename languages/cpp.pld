@@ -15,5 +15,5 @@ compile(){
 	g++ -std=c++17 -o binary -x c++ code.code
 }
 run(){
-	timeout -s KILL 3 xargs -a args.args -d '\n' ./binary < stdin.stdin
+	xargs -a args.args -d '\n' ./binary < stdin.stdin
 }

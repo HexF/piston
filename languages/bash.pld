@@ -13,5 +13,5 @@ post_uninstall(){}
 path(){}
 compile(){}
 run(){
-	xargs -a args.args -d '\n' timeout -s KILL 3 bash code.code < stdin.stdin
+	xargs -a args.args -d '\n' bash code.code < stdin.stdin
 }

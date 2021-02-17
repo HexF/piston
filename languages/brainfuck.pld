@@ -33,10 +33,10 @@ compile(){
 	int c;
 	
 	int main() {
-		$(timeout -s KILL 3 sed 's/[^][<>.,+-]//g' code.code | timeout -s KILL 3 sed $sedarg)
+		$(sed 's/[^][<>.,+-]//g' code.code | sed $sedarg)
 	}
 	EOF
-	timeout -s KILL 3 gcc -std=c11 -o binary code.c
+	gcc -std=c11 -o binary code.c
 	
 	# Merging args.args and stdin.stdin for emkc challenges
 	cat stdin.stdin >> args.args

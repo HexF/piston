@@ -13,5 +13,5 @@ post_uninstall(){}
 path(){}
 compile(){}
 run(){
-	timeout -s KILL 3 xargs -a args.args -d '\n' awk -f code.code < stdin.stdin
+	xargs -a args.args -d '\n' awk -f code.code < stdin.stdin
 }
