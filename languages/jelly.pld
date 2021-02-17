@@ -1,15 +1,25 @@
 name="jelly"
 aliases=("jelly")
-requires=()
+requires=("python3")
 
 version(){
-	 | grep -Po '\d+.\d+.\d+'
+	echo '1.0.0' | grep -Po '\d+.\d+.\d+'
+	# TODO: Actual versioning for Jelly
 }
-install(){}
+install(){
+	wget https://github.com/DennisMitchell/jellylanguage/archive/master.zip
+	unzip master.zip
+	cd jellylanguage-master
+	python3.8 -m pip install .
+
+	sed -i 's/\/usr\/local\/bin\/python3.8/\/opt\/python3\/Python-3.8.2\/python3.8/' /usr/local/bin/jelly
+
+	#TODO this installs globally, and depends on python being in the right spot: fix?
+}
 pre_uninstall(){}
 post_uninstall(){}
 path(){}
 compile(){}
 run(){
-	timeout -s KILL 3 xargs -a args.args -d '\n' jelly fu code.code < stdin.stdin
+	xargs -a args.args -d '\n' jelly fu code.code < stdin.stdin
 }

@@ -2,14 +2,26 @@ name="python3"
 aliases=("py" "py3" "python" "python3")
 requires=()
 
+_v="3.9.1"
 version(){
-	python3.8 -V | grep -Po '\d+.\d+.\d+'
+	python -V | grep -Po '\d+.\d+.\d+'
 }
-install(){}
+install(){
+	cd /opt && mkdir python3 && cd python3
+	wget https://www.python.org/ftp/python/${_v}/Python-${_v}.tar.xz
+	unxz Python-${_v}.tar.xz
+	tar -xf Python-${_v}.tar
+	cd Python-${_v}
+	./configure
+	make
+	ln -s python python3.9
+}
 pre_uninstall(){}
 post_uninstall(){}
-path(){}
+path(){
+	echo "$LBIN/Python-${_v}"
+}
 compile(){}
 run(){
-	timeout -s KILL 3 xargs -a args.args -d '\n' python3.8 code.code < stdin.stdin
+	xargs -a args.args -d '\n' python code.code < stdin.stdin
 }

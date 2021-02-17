@@ -3,14 +3,21 @@ aliases=("java")
 requires=()
 
 version(){
-	java -version | grep -Po '\d+.\d+.\d+'
+	java -version | grep -Po '\d+'
 }
-install(){}
+install(){
+	wget https://download.java.net/java/GA/jdk14/076bab302c7b4508975440c56f6cc26a/36/GPL/openjdk-14_linux-x64_bin.tar.gz
+	tar -xzf openjdk-14_linux-x64_bin.tar.gz
+}
 pre_uninstall(){}
 post_uninstall(){}
-path(){}
+path(){
+	echo "$LBIN/jdk-14/bin"
+}
 compile(){}
 run(){
+	# TODO: Java Home should be global
+	export JAVA_HOME="$LBIN/jdk-14"
 	cp code.code interim.java
-	timeout -s KILL 10 xargs -a args.args -d '\n' java interim.java < stdin.stdin
+	xargs -a args.args -d '\n' java interim.java < stdin.stdin
 }

@@ -5,11 +5,13 @@ requires=()
 version(){
 	dpkg -s dash | grep -Po '\d+.\d+.\d+'
 }
-install(){}
+install(){
+	apt install -y dash
+}
 pre_uninstall(){}
 post_uninstall(){}
 path(){}
 compile(){}
 run(){
-	xargs -a args.args -d '\n' timeout -s KILL 3 dash code.code < stdin.stdin
+	xargs -a args.args -d '\n' dash code.code < stdin.stdin
 }

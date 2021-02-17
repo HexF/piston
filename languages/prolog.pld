@@ -5,14 +5,26 @@ requires=()
 version(){
 	swipl --version | grep -Po '\d+.\d+.\d+'
 }
-install(){}
+install(){
+	wget https://www.swi-prolog.org/download/stable/src/swipl-8.2.4.tar.gz
+	tar -xf swipl-8.2.4.tar.gz
+	rm swipl-8.2.4.tar.gz
+	cd swipl-8.2.4
+	mkdir build
+	cd build
+	cmake -DSWIPL_PACKAGES_JAVA=OFF -DSWIPL_PACKAGES_X=OFF -DMULTI_THREADED=OFF -G Ninja ..
+	ninja
+
+}
 pre_uninstall(){}
 post_uninstall(){}
-path(){}
+path(){
+	echo "$LBIN/swipl-8.2.4/build/src"
+}
 compile(){}
 run(){
 	sed 's/^.*$/:- forall((Goal = (\0), call(Goal)), (write(Goal), nl))./' input.input |
 		cat code.code - > code.pl
 	
-	timeout -s KILL 3 swipl -g true -t halt code.pl
+	swipl -g true -t halt code.pl
 }

@@ -1,19 +1,22 @@
 name="typescript"
 aliases=("ts" "typescript")
-requires=()
+requires=("node")
 
 version(){
 	tsc --version | grep -Po '\d+.\d+.\d+'
 }
-install(){}
+install(){
+	npm i -g typescript
+}
 pre_uninstall(){}
 post_uninstall(){}
-path(){}
-compile(){}
-run(){
+path(){} # Built into node
+compile(){
 	mv code.code interim.ts
 	tsc interim.ts
 	rm -f interim.ts
 	mv interim.js code.code
-	timeout -s KILL 3 xargs -a args.args -d '\n' node code.code < stdin.stdin
+}
+run(){
+	xargs -a args.args -d '\n' node code.code < stdin.stdin
 }

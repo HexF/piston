@@ -5,13 +5,23 @@ requires=()
 version(){
 	go version | grep -Po '\d+.\d+.\d+'
 }
-install(){}
+install(){
+	wget https://dl.google.com/go/go1.14.1.linux-amd64.tar.gz
+	tar -xzf go1.14.1.linux-amd64.tar.gz
+}
 pre_uninstall(){}
 post_uninstall(){}
-path(){}
-compile(){}
-run(){
+path(){
+	echo "$LBIN/go/bin"
+	#TODO: GO{ROOT,CACHE}
+}
+compile(){
+	export GOROOT=$LBIN/go
+	export GOCACHE=/tmp
+
 	cp code.code interim.go
 	go build interim.go
-	timeout -s KILL 3 xargs -a args.args -d '\n' ./interim < stdin.stdin
+}
+run(){
+	xargs -a args.args -d '\n' ./interim < stdin.stdin
 }

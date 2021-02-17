@@ -5,11 +5,18 @@ requires=()
 version(){
 	lua -v | grep -Po '\d+.\d+.\d+'
 }
-install(){}
+install(){
+	wget https://sourceforge.net/projects/luabinaries/files/5.4.0/Docs%20and%20Sources/lua-5.4.0_Sources.tar.gz/download
+	tar -xzf download
+	cd lua54
+	make
+}
 pre_uninstall(){}
 post_uninstall(){}
-path(){}
+path(){
+	echo "$LBIN/lua54/src"
+}
 compile(){}
 run(){
-	timeout -s KILL 3 xargs -a args.args -d '\n' lua code.code < stdin.stdin
+	xargs -a args.args -d '\n' lua code.code < stdin.stdin
 }

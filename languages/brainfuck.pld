@@ -1,6 +1,6 @@
 name="brainfuck"
 aliases=("bf" "brainfuck")
-requires=()
+requires=("c")
 
 version(){
 	 | grep -Po '\d+.\d+.\d+'
@@ -9,8 +9,7 @@ install(){}
 pre_uninstall(){}
 post_uninstall(){}
 path(){}
-compile(){}
-run(){
+compile(){
 	sedarg="\
 	s/+/P/g;\
 	s/-/M/g;\
@@ -42,6 +41,7 @@ run(){
 	# Merging args.args and stdin.stdin for emkc challenges
 	cat stdin.stdin >> args.args
 	
-	# execution
-	timeout -s KILL 3 ./binary < args.args
+}
+run(){
+	./binary < args.args
 }

@@ -5,11 +5,16 @@ requires=()
 version(){
 	swift --version | grep -Po '\d+.\d+.\d+'
 }
-install(){}
+install(){
+	wget https://swift.org/builds/swift-5.1.5-release/ubuntu1804/swift-5.1.5-RELEASE/swift-5.1.5-RELEASE-ubuntu18.04.tar.gz
+	tar -xzf swift-5.1.5-RELEASE-ubuntu18.04.tar.gz
+}
 pre_uninstall(){}
 post_uninstall(){}
-path(){}
+path(){
+	echo "$LBIN/swift-5.1.5-RELEASE-ubuntu18.04/usr/bin"
+}
 compile(){}
 run(){
-	timeout -s KILL 3 xargs -a args.args -d '\n' swift code.code < stdin.stdin
+	xargs -a args.args -d '\n' swift code.code < stdin.stdin
 }

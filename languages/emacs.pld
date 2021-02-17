@@ -1,0 +1,25 @@
+name="emacs"
+aliases=("emacs" "el" "elisp")
+requires=()
+
+version(){
+	emacs --version | grep -Po '\d+.\d+'
+}
+install(){
+	wget https://mirrors.ocf.berkeley.edu/gnu/emacs/emacs-26.3.tar.xz
+    tar -xf emacs-26.3.tar.xz
+    rm emacs-26.3.tar.xz
+    cd emacs-26.3
+    ./configure --with-gnutls=no
+    make
+}
+pre_uninstall(){}
+post_uninstall(){}
+path(){
+	echo "$LBIN/emacs-26.3/src"
+}
+compile(){}
+run(){
+	xargs -a args.args -d '\n' emacs -Q --script code.code < stdin.stdin
+}
+

@@ -1,20 +1,24 @@
 name="osabie"
 aliases=("osabie" "05AB1E" "osable" "usable")
-requires=()
+requires=("elixir")
 
 version(){
-	 | grep -Po '\d+.\d+.\d+'
+	echo '1.0.0' | grep -Po '\d+.\d+.\d+'
 }
-install(){}
+install(){
+	git clone https://github.com/Adriandmen/05AB1E.git
+	cd 05AB1E
+	mix local.hex --force
+	mix deps.get --force
+	MIX_ENV=prod mix escript.build --force
+}
 pre_uninstall(){}
 post_uninstall(){}
-path(){}
+path(){
+	echo "$LBIN/05AB1E"
+}
 compile(){}
 run(){
-	# osabie uses Elixir, which expects UTF-8 native encoding
 	export LC_ALL="en_US.UTF-8"
-	
-	# osabie will break if you try using it with xargs
-	
-	timeout -s KILL 3 osabie code.code < args.args
+	osabie code.code < args.args
 }

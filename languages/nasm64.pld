@@ -5,13 +5,22 @@ requires=()
 version(){
 	nasm -version | grep -Po '\d+.\d+.\d+'
 }
-install(){}
+install(){
+	wget https://www.nasm.us/pub/nasm/releasebuilds/2.14.02/nasm-2.14.02.tar.gz
+	tar -xzf nasm-2.14.02.tar.gz
+	cd nasm-2.14.02
+	./configure
+	make
+}
 pre_uninstall(){}
 post_uninstall(){}
-path(){}
-compile(){}
-run(){
+path(){
+	echo "$LBIN/nasm-2.14.02"
+}
+compile(){
 	nasm -f elf64 -o binary.o code.code
 	ld -m elf_x86_64 binary.o -o binary
-	timeout -s KILL 3 xargs -a args.args -d '\n' ./binary < stdin.stdin
+}
+run(){
+	xargs -a args.args -d '\n' ./binary < stdin.stdin
 }

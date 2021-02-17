@@ -5,12 +5,20 @@ requires=()
 version(){
 	nim -v | grep -Po '\d+.\d+.\d+'
 }
-install(){}
+install(){
+	unxz nim-1.4.0-linux_x64.tar.xz
+	tar -xf nim-1.4.0-linux_x64.tar
+	cd nim-1.4.0
+	./install.sh $LBIN
+}
 pre_uninstall(){}
 post_uninstall(){}
-path(){}
-compile(){}
+path(){
+	echo "$LBIN/nim/bin"
+}
+compile(){
+	nim --hints:off c code.code
+}
 run(){
-	timeout -s KILL 10 nim --hints:off c code.code
-	timeout -s KILL 3 xargs -a args.args -d '\n' ./code
+	xargs -a args.args -d '\n' ./code
 }

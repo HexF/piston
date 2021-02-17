@@ -5,12 +5,19 @@ requires=()
 version(){
 	rustc --version | grep -Po '\d+.\d+.\d+'
 }
-install(){}
+install(){
+	wget https://static.rust-lang.org/dist/rust-1.49.0-x86_64-unknown-linux-gnu.tar.gz
+	tar -xzf rust-1.49.0-x86_64-unknown-linux-gnu.tar.gz
+	cd rust-1.49.0-x86_64-unknown-linux-gnu
+	./install.sh
+	#TODO: Installs globally (can we change this?)
+}
 pre_uninstall(){}
 post_uninstall(){}
 path(){}
-compile(){}
+compile(){
+	rustc -o binary code.code
+}
 run(){
-	timeout -s KILL 10 rustc -o binary code.code
-	timeout -s KILL 3 xargs -a args.args -d '\n' ./binary < stdin.stdin
+	xargs -a args.args -d '\n' ./binary < stdin.stdin
 }

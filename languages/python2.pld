@@ -2,14 +2,25 @@ name="python2"
 aliases=("python2" "py2")
 requires=()
 
+_v=2.7.17 # Used within this file only
 version(){
 	python -V | grep -Po '\d+.\d+.\d+'
 }
-install(){}
+install(){
+	wget https://www.python.org/ftp/python/2.7.17/Python-2.7.17.tar.xz
+	unxz Python-2.7.17.tar.xz
+	tar -xf Python-2.7.17.tar
+	cd Python-2.7.17
+	./configure
+	# open Modules/Setup and uncomment zlib line
+	make
+}
 pre_uninstall(){}
 post_uninstall(){}
-path(){}
+path(){
+	echo "$LBIN/Python-2.7.17"
+}
 compile(){}
 run(){
-	timeout -s KILL 3 xargs -a args.args -d '\n' python code.code < stdin.stdin
+	xargs -a args.args -d '\n' python code.code < stdin.stdin
 }

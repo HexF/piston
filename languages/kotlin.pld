@@ -1,17 +1,23 @@
 name="kotlin"
 aliases=("kotlin" "kt")
-requires=()
+requires=("java")
 
 version(){
 	kotlinc -version 2>&1 | grep kotlin | grep -Po '\d+.\d+.\d+'
 }
-install(){}
+install(){
+	wget https://github.com/JetBrains/kotlin/releases/download/v1.4.10/kotlin-compiler-1.4.10.zip
+	unzip kotlin-compiler-1.4.10.zip
+}
 pre_uninstall(){}
 post_uninstall(){}
-path(){}
-compile(){}
-run(){
+path(){
+	echo "$LBIN/kotlinc/bin"
+}
+compile(){
 	cp code.code code.kt
 	kotlinc code.kt -include-runtime -d code.jar
-	timeout -s KILL 3 xargs -a args.args -d '\n' java -jar code.jar < stdin.stdin
+}
+run(){
+	xargs -a args.args -d '\n' java -jar code.jar < stdin.stdin
 }

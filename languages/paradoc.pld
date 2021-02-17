@@ -1,16 +1,20 @@
 name="paradoc"
 aliases=("paradoc")
-requires=()
+requires=("python3")
 
 version(){
 	python3.8 -m paradoc --version | grep -Po '\d+.\d+.\d+'
 }
-install(){}
+install(){
+	git clone https://github.com/betaveros/paradoc.git
+}
 pre_uninstall(){}
 post_uninstall(){}
-path(){}
+path(){
+	# TODO: Doesn't account for pythonpath
+}
 compile(){}
 run(){
-	export PYTHONPATH=$PYTHONPATH:/opt/paradoc
-	timeout -s KILL 3 python3.8 -m paradoc code.code < args.args
+	export PYTHONPATH=$PYTHONPATH:$LBIN
+	python -m paradoc code.code < args.args
 }

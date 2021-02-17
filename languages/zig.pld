@@ -5,13 +5,19 @@ requires=()
 version(){
 	zig version | grep -Po '\d+.\d+.\d+'
 }
-install(){}
+install(){
+	wget https://ziglang.org/download/0.7.1/zig-linux-x86_64-0.7.1.tar.xz
+	tar -xf zig-linux-x86_64-0.7.1.tar.xz
+}
 pre_uninstall(){}
 post_uninstall(){}
-path(){}
-compile(){}
-run(){
+path(){
+	echo "$LBIN/zig-linux-x86_64-0.7.1"
+}
+compile(){
 	cp code.code main.zig
-	timeout -s KILL 10 zig build-exe main.zig && \
-	timeout -s KILL 3 xargs -a args.args -d '\n' ./main
+	zig build-exe main.zig
+}
+run(){
+	xargs -a args.args -d '\n' ./main
 }

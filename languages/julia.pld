@@ -5,11 +5,16 @@ requires=()
 version(){
 	julia --version | grep -Po '\d+.\d+.\d+'
 }
-install(){}
+install(){
+	wget https://julialang-s3.julialang.org/bin/linux/x64/1.5/julia-1.5.0-linux-x86_64.tar.gz
+	tar -xzf julia-1.5.0-linux-x86_64.tar.gz
+}
 pre_uninstall(){}
 post_uninstall(){}
-path(){}
+path(){
+	echo "$LBIN/julia-1.5.0/bin"
+}
 compile(){}
 run(){
-	timeout -s KILL 3 xargs -a args.args -d '\n' julia code.code < stdin.stdin
+	xargs -a args.args -d '\n' julia code.code < stdin.stdin
 }

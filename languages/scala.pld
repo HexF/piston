@@ -1,6 +1,6 @@
 name="scala"
 aliases=("scala" "sc")
-requires=()
+requires=("java")
 
 version(){
 	scala -version | grep -Po '\d+.\d+.\d+'
@@ -8,9 +8,13 @@ version(){
 install(){}
 pre_uninstall(){}
 post_uninstall(){}
-path(){}
+path(){
+	echo "$LBIN/scala3-3.0.0-M3/bin"
+}
 compile(){}
 run(){
+	#TODO: Needs JAVA_HOME from java pld
+	
 	cp code.code interim.scala
-	timeout -s KILL 10 xargs -a args.args -d '\n' scala interim.scala < stdin.stdin
+	xargs -a args.args -d '\n' scala interim.scala < stdin.stdin
 }

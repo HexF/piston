@@ -1,0 +1,22 @@
+name="elixir"
+aliases=("elixir")
+requires=("erlang")
+
+version(){
+	elixr --version | grep -Po '\d+.\d+.\d+'
+}
+install(){
+	wget https://github.com/elixir-lang/elixir/releases/download/v1.10.3/Precompiled.zip
+	mkdir elixir-1.10.3 && unzip Precompiled.zip -d elixir-1.10.3/
+}
+pre_uninstall(){}
+post_uninstall(){}
+path(){
+	echo "$LBIN/elixir-1.10.3/bin"
+}
+compile(){}
+run(){
+	export LC_ALL="en_US.UTF-8"
+    xargs -a args.args -d '\n' elixir code.code < stdin.stdin
+}
+

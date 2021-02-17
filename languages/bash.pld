@@ -5,7 +5,9 @@ requires=()
 version(){
 	bash --version | grep -Po '\d+.\d+.\d+'
 }
-install(){}
+install(){
+	apt install -y bash
+}
 pre_uninstall(){}
 post_uninstall(){}
 path(){}

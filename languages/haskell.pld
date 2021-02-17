@@ -5,13 +5,17 @@ requires=()
 version(){
 	ghc --version | grep -Po '\d+.\d+.\d+'
 }
-install(){}
+install(){
+	# TODO: Installs globally
+	apt install -y ghc
+}
 pre_uninstall(){}
 post_uninstall(){}
 path(){}
-compile(){}
-run(){
+compile(){
 	cp code.code code.hs
 	ghc -dynamic -o binary code.hs > /dev/null 2>&1
-	timeout -s KILL 3 xargs -a args.args -d '\n' ./binary < stdin.stdin
+}
+run(){
+	xargs -a args.args -d '\n' ./binary < stdin.stdin
 }

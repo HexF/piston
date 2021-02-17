@@ -1,0 +1,23 @@
+name="erlang"
+aliases=("erlang")
+requires=()
+
+version(){
+	erlang --version | grep -Po '\d+.\d+.\d+'
+}
+install(){
+	wget http://erlang.org/download/otp_src_23.0.tar.gz
+    gunzip -c otp_src_23.0.tar.gz | tar xf -
+    cd otp_src_23.0 && ./configure
+    make
+}
+pre_uninstall(){}
+post_uninstall(){}
+path(){
+	echo "$LBIN/otp_src_23.0/bin"
+}
+compile(){}
+run(){
+	# TODO: erlang executer
+}
+

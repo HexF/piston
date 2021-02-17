@@ -5,11 +5,19 @@ requires=()
 version(){
 	php -v | grep -Po '\d+.\d+.\d+'
 }
-install(){}
+install(){
+	wget https://www.php.net/distributions/php-8.0.0.tar.gz
+	tar -xzf php-8.0.0.tar.gz
+	cd php-8.0.0
+	./configure
+	make
+	make install
+	#TODO: Installs globally (can we change this?)
+}
 pre_uninstall(){}
 post_uninstall(){}
 path(){}
 compile(){}
 run(){
-	timeout -s KILL 3 xargs -a args.args -d '\n' php code.code < stdin.stdin
+	xargs -a args.args -d '\n' php code.code < stdin.stdin
 }

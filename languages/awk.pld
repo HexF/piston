@@ -5,7 +5,9 @@ requires=()
 version(){
 	awk -W version | grep -Po '\d+.\d+.\d+'
 }
-install(){}
+install(){
+	apt install -y gawk
+}
 pre_uninstall(){}
 post_uninstall(){}
 path(){}

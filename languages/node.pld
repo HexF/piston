@@ -5,11 +5,17 @@ requires=()
 version(){
 	node --version | grep -Po '\d+.\d+.\d+'
 }
-install(){}
+install(){
+	wget https://nodejs.org/dist/v12.16.1/node-v12.16.1-linux-x64.tar.xz
+	unxz node-v12.16.1-linux-x64.tar.xz
+	tar -xf node-v12.16.1-linux-x64.tar
+}
 pre_uninstall(){}
 post_uninstall(){}
-path(){}
+path(){
+	echo "$LBIN/node-v12.16.1-linux-x64/bin"
+}
 compile(){}
 run(){
-	timeout -s KILL 3 xargs -a args.args -d '\n' node code.code < stdin.stdin
+	xargs -a args.args -d '\n' node code.code < stdin.stdin
 }

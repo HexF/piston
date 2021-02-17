@@ -5,11 +5,13 @@ requires=()
 version(){
 	ruby --version | grep -Po '\d+.\d+.\d+'
 }
-install(){}
+install(){
+	apt install -y ruby
+}
 pre_uninstall(){}
 post_uninstall(){}
 path(){}
 compile(){}
 run(){
-	timeout -s KILL 3 xargs -a args.args -d '\n' ruby code.code < stdin.stdin
+	xargs -a args.args -d '\n' ruby code.code < stdin.stdin
 }
